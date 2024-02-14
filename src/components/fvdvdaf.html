@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #000;
+    }
+
+    #canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const { innerWidth, innerHeight } = window;
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+
+    const STAR_COUNT = 150;
+    const STAR_SIZES = [2, 3, 4];
+    const MAX_SHOOTING_STAR_HEIGHT = innerHeight / 2;
+    const shootingStars = [];
+    const baseStarColor = "rgba(255, 255, 255, 1)";
+    const shootingStarColors = ["rgba(255, 223, 0, 1)", "rgba(255, 82, 82, 1)"];
+
+    function createStar() {
+      return {
+        x: Math.random() * innerWidth,
+        y: Math.random() * innerHeight,
+        size: STAR_SIZES[Math.floor(Math.random() * STAR_SIZES.length)],
+        speed: Math.random() * 3 + 1,
+        color: baseStarColor,
+      };
+    }
+
+    function createShootingStar() {
+      return {
+        x: Math.random() * innerWidth,
+        y: Math.random() * MAX_SHOOTING_STAR_HEIGHT,
+        size: STAR_SIZES[Math.floor(Math.random() * STAR_SIZES.length)],
+        height: Math.random() * MAX_SHOOTING_STAR_HEIGHT,
+        speed: Math.random() * 5 + 2,
+        color:
+          shootingStarColors[
+            Math.floor(Math.random() * shootingStarColors.length)
+          ],
+        trailOpacity: 1,
+      };
+    }
+
+    function updateStar(star) {
+      star.y += star.speed;
+
+      if (star.y > innerHeight) {
+        star.y = 0;
+        star.x = Math.random() * innerWidth;
+      }
+    }
+
+    function updateShootingStar(star) {
+      star.y += star.speed;
+      star.trailOpacity -= 0.01;
+
+      if (star.y > innerHeight) {
+        star.y = 0;
+        star.x = Math.random() * innerWidth;
+        star.trailOpacity = 1;
+      }
+    }
+
+    function drawStar(star) {
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+      ctx.fillStyle = star.color;
+      ctx.fill();
+    }
+
+    function drawShootingStar(star) {
+      ctx.beginPath();
+      ctx.moveTo(star.x, star.y);
+      ctx.lineTo(star.x, star.y + star.size);
+      ctx.strokeStyle = `rgba(255, 255, 255, ${star.trailOpacity})`;
+      ctx.stroke();
+      drawStar(star);
+    }
+
+    function initStars() {
+      for (let i = 0; i < STAR_COUNT; i++) {
+        if (Math.random() > 0.9) {
+          shootingStars.push(createShootingStar());
+        } else {
+          shootingStars.push(createStar());
+        }
+      }
+    }
+
+   

@@ -1,0 +1,23 @@
+
+.suggestions{
+    margin: auto;
+    padding-top: 10px;
+   width: 50%;
+}
+
+.suggestItem{
+    color: wheat;
+    font-size: small;
+    cursor: pointer;
+    
+}
+
+@media screen and (max-width:450px){
+   .suggestions{
+    width: 90%;
+   }
+}
+
+
+
+

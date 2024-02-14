@@ -1,0 +1,148 @@
+/* MovieContainer.module.css */
+
+body {
+    /* background: #000; */
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background: #000;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: -20px;
+}
+
+.child {
+    width: 550px; /* Full width on small screens */
+    /* max-width: 700px; */
+    height: 500px;
+  
+    
+}
+
+.child1 {
+    text-align: right;
+    /* order: 2; Change order for mobile layout */
+}
+
+.child2 {
+    /* background: red; */
+    text-align: left;
+    padding: 0px;
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    order: 1; /* Change order for mobile layout */
+}
+
+img {
+    border: 5px solid white;
+    margin-top: 10px;
+    height: 75%; /* Full height of the container */
+    width: 270px; /* Responsive width */
+}
+
+
+.prevBox{
+    width: 320px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color:black;
+    padding: 10px;
+    color: white;
+    font-family: cursive;
+    font-size: large;
+  }
+
+@media (max-width: 458px) {
+    .child {
+        width: 90%;
+        padding: 15px 0px;
+        height: auto; /* Adjust height on smaller screens */
+    }
+    .container{
+        height: auto;
+        
+    }
+
+    img{
+        height: 420px;
+        width: 100%;
+    }
+
+    .details{
+        font-weight: bolder;
+        
+    }
+    .title{
+        padding: 5px 10px;
+    }
+    .prevBox{
+        margin: auto;
+        width: 90%;
+    }
+
+    
+}
+
+.child2  {
+    color: white;
+}
+.child2{
+    height: auto;
+}
+.genre{
+    background: rgb(15, 15, 14);
+    padding: 5px 10px;
+    width: fit-content;
+}
+
+.imdb{
+    color: gold;
+   }
+
+
+.title{
+    background: gold;
+   color: black;
+    font-weight: bolder;
+   padding: 3px 10px;
+    
+}
+
+
+  
+  .withoutTitle {
+    height: 85vh;
+    
+  }
+  .withTitle{
+    padding-bottom: 30px;
+    height: auto;
+  }
+
+ 
+  
+  .backgroundAnimation {
+    /* Add the background animation styles here */
+    background-image: url('https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg');
+    background-size: cover;
+    animation: slidein 100s infinite alternate;
+  }
+  
+  @keyframes slidein {
+    from {
+      background-position: top;
+      background-size: 3000px;
+    }
+    to {
+      background-position: -100px 0px;
+      background-size: 2750px;
+    }
+  }
+  
+  /* Rest of your styles */
+  
